@@ -1,0 +1,161 @@
+<div class="container">
+    <div class="row">
+        <div class="col" style="margin: 20px auto">
+            <!-- Button to Open the Modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#category">
+               Category
+            </button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#child">
+                Child
+            </button>
+            <!-- The Modal category -->
+            <div class="modal fade" id="category">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Yangi Menyu qo'shish</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <form method="post" action="/admin/addMenu">
+                                <div class="form-group">
+                                    <label for="category">Сategory (uz):</label>
+                                    <input type="text" class="form-control" name="category" id="category">
+                                </div>
+                                <button type="submit" class="btn btn-primary right">Saqlash</button>
+                            </form>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Bekor qilish</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Modal child -->
+            <div class="modal fade" id="child">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Child</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <form method="post" action="/admin/addMenu">
+                                <div class="form-group">
+                                    <label for="child">Child</label>
+                                    <input type="text" class="form-control" name="child" id="child">
+                                </div>
+                                <div class="form-group">
+                                    <label>Minimal</label>
+                                    <select name="category_id">
+                                        <option selected="selected"></option>
+                                        {{#each c}}
+                                            <option value="{{_id}}" >{{name}}</option>
+                                        {{/each}}
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary right">Saqlash</button>
+                            </form>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Bekor qilish</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="modal fade" id="menuEdit">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Menyuni Taxrirlash</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form method="POST" action="/admin/editMenu">
+                            <input type="hidden" class="id" name="id" id="id1">
+
+                            <div class="form-group">
+                                <label for="menu_name">Menyu nomi:</label>
+                                <input type="text" class="form-control" name="menu_name" id="menu_name1">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="router">Menyu yo'li:</label>
+                                <input type="text" class="form-control" name="router" id="router1">
+                            </div>
+
+
+                            <button type="submit" class="btn btn-primary right">Saqlash</button>
+                        </form>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Bekor qilish</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>№</th>
+                    <th style="width: 80%">Menyu nomi </th>
+                    <th style="width: 20%">Sozlamalar</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {{#each allMenu}}
+                    <tr>
+                        <td></td>
+                        <td>{{menu_name}}</td>
+                        <td>{{router}}</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-success btn-sm btnEdit" data-id="{{_id}}">
+                                <i class="fas fa-edit fa-1x"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-danger btn-sm btnDelete" data-id="{{_id}}" >
+                                <i class="fas fa-trash fa-1x"></i>
+                            </button>
+
+                        </td>
+                    </tr>
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
